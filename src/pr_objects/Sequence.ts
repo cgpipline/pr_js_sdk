@@ -37,15 +37,15 @@ export class Sequence {
     /**
      * get The time, in ticks, of the end of the sequence.
      */
-    get end(): number {
-        return Number(eval_on_this_object(this._premiere_id, 'end'))
+    get end(): string {
+        return eval_on_this_object(this._premiere_id, 'end')
     }
 
     /**
      * set The time, in ticks, of the end of the sequence.
      * @param end
      */
-    set end(end: number) {
+    set end(end: string) {
         throw new Error("ERROR: Attribute 'end' is read-only");
     }
 

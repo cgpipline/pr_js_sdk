@@ -50,6 +50,22 @@ export class Sequence {
     }
 
     /**
+     * get The name of the sequence.
+     */
+    get name(): string {
+        return eval_on_this_object(this._premiere_id, 'name')
+    }
+
+    /**
+     * set The name of the sequence.
+     * @param name
+     */
+    set name(name: string) {
+        let es_name = format_object_to_es(name);
+        eval_on_this_object(this._premiere_id, `name = ${es_name}`)
+    }
+
+    /**
      * get The time, in ticks, of the end of the sequence.
      */
     get end(): string {

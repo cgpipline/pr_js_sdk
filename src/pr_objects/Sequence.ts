@@ -96,6 +96,23 @@ export class Sequence {
     }
 
     /**
+     * get The video display format of the sequence.
+     */
+    get videoDisplayFormat(): string {
+        return eval_on_this_object(this._premiere_id, 'videoDisplayFormat')
+    }
+
+    /**
+     * set The video display format of the sequence.Set this attribute with the Sequence.setSettings() method.
+     * @param videoDisplayFormat
+     */
+    set videoDisplayFormat(videoDisplayFormat: string) {
+        let es_videoDisplayFormat = format_object_to_es(videoDisplayFormat);
+        eval_on_this_object(this._premiere_id, `videoDisplayFormat = ${es_videoDisplayFormat}`)
+    }
+
+
+    /**
      * get The time, in ticks, of the end of the sequence.
      */
     get end(): string {

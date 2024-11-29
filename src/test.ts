@@ -54,6 +54,11 @@ try {
     let seq_timebase = sequences[0].timebase
     console.log('sequences timebase:' + seq_timebase);
 
+    // 获取sequences对象 videoDisplayFormat 属性
+    let seq_videoDisplayFormat = sequences[0].videoDisplayFormat
+    console.log('sequences videoDisplayFormat:' + seq_videoDisplayFormat);
+    //sequences[0].videoDisplayFormat = 101;
+
 
     // 获取所有 audioTracks 对象
     let audio_tracks = sequences[0].audioTracks;

@@ -111,6 +111,21 @@ export class Sequence {
         eval_on_this_object(this._premiere_id, `videoDisplayFormat = ${es_videoDisplayFormat}`)
     }
 
+    /**
+     * get The starting time, in ticks, of the sequence.
+     */
+    get zeroPoint(): string {
+        return eval_on_this_object(this._premiere_id, 'zeroPoint')
+    }
+
+    /**
+     * Set this attribute with the Sequence.setZeroPoint() method.
+     * @param zeroPoint
+     */
+    set zeroPoint(zeroPoint: string) {
+        throw new Error("ERROR: Attribute 'zeroPoint' is read-only");
+    }
+
 
     /**
      * get The time, in ticks, of the end of the sequence.

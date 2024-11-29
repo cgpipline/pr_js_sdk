@@ -59,6 +59,10 @@ try {
     console.log('sequences videoDisplayFormat:' + seq_videoDisplayFormat);
     //sequences[0].videoDisplayFormat = 101;
 
+    // 获取sequences对象 zeroPoint 属性
+    let seq_zeroPoint = sequences[0].zeroPoint
+    console.log('sequences zeroPoint:' + seq_zeroPoint);
+
 
     // 获取所有 audioTracks 对象
     let audio_tracks = sequences[0].audioTracks;

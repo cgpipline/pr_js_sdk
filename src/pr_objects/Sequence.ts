@@ -1,6 +1,5 @@
 import {eval_script_destroy_object, eval_on_this_object, format_object_to_es} from "../utils/helper";
 import {TrackCollection} from "./TrackCollection";
-import {SequenceCollection} from "./SequenceCollection";
 
 export class Sequence {
     protected _premiere_id: string = ''
@@ -34,6 +33,22 @@ export class Sequence {
     set audioDisplayFormat(audioDisplayFormat: any) {
         eval_on_this_object(this._premiere_id, `audioDisplayFormat = ${format_object_to_es(audioDisplayFormat)}`)
     }
+
+    /**
+     * get The time, in ticks, of the end of the sequence.
+     */
+    get end(): number {
+        return Number(eval_on_this_object(this._premiere_id, 'end'))
+    }
+
+    /**
+     * set The time, in ticks, of the end of the sequence.
+     * @param end
+     */
+    set end(end: number) {
+        throw new Error("ERROR: Attribute 'end' is read-only");
+    }
+
 
     /**
      * get An array of audio Track objects in the sequence.

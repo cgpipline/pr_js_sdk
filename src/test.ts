@@ -19,8 +19,15 @@ try {
     let seq_len: number = sequences.len;
     for (let i: number = 0; i < seq_len; i++) {
         let sequence_item = sequences[i];
-        console.log(sequence_item.audioDisplayFormat);
     }
+
+    // 获取sequences对象 audioDisplayFormat属性
+    let audioDisplayFormat = sequences[0].audioDisplayFormat
+    console.log('sequences audioDisplayFormat:' + audioDisplayFormat);
+
+    // 获取sequences对象 end属性
+    let seq_end = sequences[0].end
+    console.log('sequences end:' + seq_end);
 
     // 获取所有 audioTracks 对象
     let audio_tracks = sequences[0].audioTracks;

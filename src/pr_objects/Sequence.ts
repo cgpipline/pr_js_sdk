@@ -42,7 +42,7 @@ export class Sequence {
     }
 
     /**
-     * set This is the ordinal assigned to the sequence upon creation. If this is the thirty-third sequence created within the project during a given Premiere Pro session, this value will be
+     * set This is the ordinal assigned to the sequence upon creation.
      * @param id
      */
     set id(id: number) {
@@ -63,6 +63,21 @@ export class Sequence {
     set name(name: string) {
         let es_name = format_object_to_es(name);
         eval_on_this_object(this._premiere_id, `name = ${es_name}`)
+    }
+
+    /**
+     * get The unique identifier assigned to this sequence, at the time of its creation, in the form of xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
+     */
+    get sequenceID(): string {
+        return eval_on_this_object(this._premiere_id, 'sequenceID')
+    }
+
+    /**
+     * set The unique identifier assigned to this sequence
+     * @param sequenceID
+     */
+    set sequenceID(sequenceID: string) {
+        throw new Error("ERROR: Attribute 'sequenceID' is read-only");
     }
 
     /**

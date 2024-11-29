@@ -44,7 +44,11 @@ try {
     // 获取sequences对象 name 属性
     let seq_name = sequences[0].name
     console.log('sequences name:' + seq_name);
-    sequences[0].name = 'ES001-layout2'
+    //sequences[0].name = 'ES001-layout2';
+
+    // 获取sequences对象 sequenceID 属性
+    let seq_sequenceID = sequences[0].sequenceID
+    console.log('sequences sequenceID:' + seq_sequenceID);
 
 
     // 获取所有 audioTracks 对象

@@ -81,6 +81,21 @@ export class Sequence {
     }
 
     /**
+     * get The number of ticks per frame in the sequence. Converted to seconds, this is commonly referred to as the frame duration of the sequence.
+     */
+    get timebase(): string {
+        return eval_on_this_object(this._premiere_id, 'timebase')
+    }
+
+    /**
+     * set The number of ticks per frame in the sequence.
+     * @param timebase
+     */
+    set timebase(timebase: string) {
+        throw new Error("ERROR: Attribute 'timebase' is read-only");
+    }
+
+    /**
      * get The time, in ticks, of the end of the sequence.
      */
     get end(): string {

@@ -35,6 +35,21 @@ export class Sequence {
     }
 
     /**
+     * get This is the ordinal assigned to the sequence upon creation. If this is the thirty-third sequence created within the project during a given Premiere Pro session, this value will be
+     */
+    get id(): number {
+        return Number(eval_on_this_object(this._premiere_id, 'id'))
+    }
+
+    /**
+     * set This is the ordinal assigned to the sequence upon creation. If this is the thirty-third sequence created within the project during a given Premiere Pro session, this value will be
+     * @param id
+     */
+    set id(id: number) {
+        throw new Error("ERROR: Attribute 'id' is read-only");
+    }
+
+    /**
      * get The time, in ticks, of the end of the sequence.
      */
     get end(): string {

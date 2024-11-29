@@ -37,6 +37,10 @@ try {
     let seq_frameSizeVertical = sequences[0].frameSizeVertical
     console.log('sequences frameSizeVertical:' + seq_frameSizeVertical);
 
+    // 获取sequences对象 id 属性
+    let seq_id = sequences[0].id
+    console.log('sequences id:' + seq_id);
+
     // 获取所有 audioTracks 对象
     let audio_tracks = sequences[0].audioTracks;
 

@@ -29,6 +29,14 @@ try {
     let seq_end = sequences[0].end
     console.log('sequences end:' + seq_end);
 
+    // 获取sequences对象 frameSizeHorizontal属性
+    let seq_frameSizeHorizontal = sequences[0].frameSizeHorizontal
+    console.log('sequences frameSizeHorizontal:' + seq_frameSizeHorizontal);
+
+    // 获取sequences对象 frameSizeVertical 属性
+    let seq_frameSizeVertical = sequences[0].frameSizeVertical
+    console.log('sequences frameSizeVertical:' + seq_frameSizeVertical);
+
     // 获取所有 audioTracks 对象
     let audio_tracks = sequences[0].audioTracks;
 

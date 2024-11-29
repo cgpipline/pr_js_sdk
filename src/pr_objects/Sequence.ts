@@ -49,6 +49,37 @@ export class Sequence {
         throw new Error("ERROR: Attribute 'end' is read-only");
     }
 
+    /**
+     * get The horizontal frame size, or width, of the sequence.
+     */
+    get frameSizeHorizontal(): number {
+        return Number(eval_on_this_object(this._premiere_id, 'frameSizeHorizontal'))
+    }
+
+    /**
+     * set The horizontal frame size, or width, of the sequence.
+     * Set this attribute with the Sequence.setSettings() method.
+     * @param end
+     */
+    set frameSizeHorizontal(end: number) {
+        throw new Error("ERROR: Attribute 'frameSizeHorizontal' is read-only");
+    }
+
+    /**
+     * get The vertical frame size, or height, of the sequence.
+     */
+    get frameSizeVertical(): number {
+        return Number(eval_on_this_object(this._premiere_id, 'frameSizeVertical'))
+    }
+
+    /**
+     * set The vertical frame size, or height, of the sequence.
+     * Set this attribute with the Sequence.setSettings() method.
+     * @param end
+     */
+    set frameSizeVertical(end: number) {
+        throw new Error("ERROR: Attribute 'frameSizeVertical' is read-only");
+    }
 
     /**
      * get An array of audio Track objects in the sequence.

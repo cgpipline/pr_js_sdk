@@ -5,7 +5,11 @@ import {SequenceCollection} from "./SequenceCollection";
 export class Sequence {
     protected _premiere_id: string = ''
 
+    // 所有 audio tracks 对象
     private _audioTrackCollectionObject: TrackCollection | null = null
+
+    // 所有 video tracks 对象
+    private _videoTrackCollectionObject: TrackCollection | null = null
 
     constructor(seq_premiere_id: string) {
         this._init(seq_premiere_id);
@@ -50,6 +54,24 @@ export class Sequence {
         throw new Error("ERROR: Attribute 'audioTracks' is read-only");
     }
 
+    /**
+     * get An array of video Track objects in the sequence.
+     */
+    get videoTracks(): TrackCollection {
+        let video_track_premiere_id: string = eval_on_this_object(this._premiere_id, 'videoTracks');
+        if (!this._videoTrackCollectionObject) {
+            this._videoTrackCollectionObject = new TrackCollection(video_track_premiere_id);
+        }
+        return this._videoTrackCollectionObject;
+    }
+
+    /**
+     * set An array of video Track objects in the sequence.
+     * @param videoTracks
+     */
+    set videoTracks(videoTracks: TrackCollection) {
+        throw new Error("ERROR: Attribute 'videoTracks' is read-only");
+    }
 
     /**
      * 销毁对象
@@ -61,6 +83,10 @@ export class Sequence {
 
         if (this._audioTrackCollectionObject) {
             this._audioTrackCollectionObject.dispose();
+        }
+
+        if (this._videoTrackCollectionObject) {
+            this._videoTrackCollectionObject.dispose();
         }
     }
 }

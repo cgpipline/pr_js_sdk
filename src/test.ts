@@ -31,6 +31,15 @@ try {
         let a_track_item = audio_tracks[i];
     }
 
+    // 获取所有 videoTracks 对象
+    let video_tracks = sequences[0].videoTracks;
+
+    // 获取单个 videoTracks 对象
+    let v_tracks_len: number = video_tracks.len;
+    for (let i: number = 0; i < v_tracks_len; i++) {
+        let v_track_item = video_tracks[i];
+    }
+
 } finally {
     app.dispose();
 }

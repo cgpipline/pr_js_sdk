@@ -1,6 +1,6 @@
-import {Application} from "./pr_objects/Application";
-import {SequenceCollection} from "./pr_objects/SequenceCollection";
-import {check_premiere_is_alive} from "./utils/helper";
+import {Application} from "../pr_objects/Application";
+import {SequenceCollection} from "../pr_objects/SequenceCollection";
+import {check_premiere_is_alive} from "../utils/helper";
 
 // 判断premiere是否启动
 let pr_alive = check_premiere_is_alive()

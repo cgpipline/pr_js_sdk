@@ -1,6 +1,8 @@
 import {eval_on_this_object} from "../utils/helper";
 
 export class Collection {
+    protected _premiere_id: string = '';
+    public len: number = 0;
 
     /**
      * 处理获取指定索引数据基类
@@ -17,6 +19,6 @@ export class Collection {
             index = len + given_index
         }
 
-        return eval_on_this_object(id,`[${index}]`, false);
+        return eval_on_this_object(id, `[${index}]`, false);
     }
 }

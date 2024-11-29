@@ -3,31 +3,15 @@ import {Collection} from "./Collection";
 import {Sequence} from "./Sequence";
 
 export class SequenceCollection extends Collection {
-    public len: number = 0;
-    protected _premiere_id: string = '';
-
-    protected _seq_instances: { [index: string]: Sequence } = {};
+    protected _self_instances: { [index: string]: Sequence } = {};
     private data: { [key: number]: Sequence | any };
 
-    [key: number]: () => Sequence;
+    [key: number]: any;
 
     constructor(seq_premiere_id: string) {
         super();
         this.data = {};
         this._init(seq_premiere_id);
-        return new Proxy(this, {
-            get(target, prop: any): any {
-                try {
-                    if (!isNaN(Number(prop))) {
-                        return target[prop]()
-                    } else {
-                        return target[prop]
-                    }
-                } catch (e) {
-                    throw new Error(`ERROR:${prop}index not exist`)
-                }
-            }
-        })
     }
 
     public _init(seq_premiere_id: string): void {
@@ -40,18 +24,23 @@ export class SequenceCollection extends Collection {
         if (this.len > 0) {
             // 初始化对象数组
             for (let key: number = 0; key < this.len; key++) {
-                this[key] = (): Sequence => {
-                    // 获取单个Sequence对象
-                    if (this._seq_instances[key.toString()]) {
-                        return this._seq_instances[key.toString()];
-                    } else {
-                        let instance_id: any = this.getItem(key, this._premiere_id, this.len);
-                        let seq_instances_obj: Sequence = new Sequence(instance_id);
-                        this._seq_instances[key.toString()] = seq_instances_obj;
-                        console.log(`----获取单个sequence对象----:${instance_id}`);
-                        return seq_instances_obj
+                this[key] = ''
+            }
+            for (let key = 0; key < this.len; key++) {
+                Object.defineProperty(this, key, {
+                    get: () => {
+                        // 获取单个Sequence对象
+                        if (this._self_instances[key.toString()]) {
+                            return this._self_instances[key.toString()];
+                        } else {
+                            let instance_id: any = this.getItem(key, this._premiere_id, this.len);
+                            let _instances_obj: Sequence = new Sequence(instance_id);
+                            this._self_instances[key.toString()] = _instances_obj;
+                            console.log(`----获取单个sequence对象----:${instance_id}`);
+                            return _instances_obj
+                        }
                     }
-                };
+                });
             }
         }
     }
@@ -62,11 +51,11 @@ export class SequenceCollection extends Collection {
     public dispose(): void {
         if (this._premiere_id) {
             eval_script_destroy_object(this._premiere_id, 'sequences');
-            if (Object.keys(this._seq_instances).length) {
-                for (const key in this._seq_instances) {
-                    this._seq_instances[key].dispose();
+            if (Object.keys(this._self_instances).length) {
+                for (const key in this._self_instances) {
+                    this._self_instances[key].dispose();
                 }
-                this._seq_instances = {};
+                this._self_instances = {};
             }
         }
     }

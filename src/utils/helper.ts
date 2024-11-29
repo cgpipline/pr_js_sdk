@@ -125,7 +125,7 @@ export function eval_on_this_object(premiere_id: string, extend_property: string
     let result: string = eval_script_returning_object(line, true)
 
     if (result == "undefined") {
-        throw new Error('ERROR:Project object not found.')
+        return 'None';
     }
 
     return result;

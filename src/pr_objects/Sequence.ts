@@ -1,5 +1,7 @@
 import {eval_script_destroy_object, eval_on_this_object, format_object_to_es} from "../utils/helper";
 import {TrackCollection} from "./TrackCollection";
+import {MarkerCollection} from "./MarkerCollection";
+import {ProjectItem} from "./ProjectItem";
 
 export class Sequence {
     protected _premiere_id: string = ''
@@ -9,6 +11,12 @@ export class Sequence {
 
     // 所有 video tracks 对象
     private _videoTrackCollectionObject: TrackCollection | null = null
+
+    // 所有 markers 对象
+    private _markersCollectionObject: MarkerCollection | null = null
+
+    // 获取project item对象
+    private _projectItemCollectionObject: ProjectItem | null = null
 
     constructor(seq_premiere_id: string) {
         this._init(seq_premiere_id);
@@ -213,6 +221,44 @@ export class Sequence {
     }
 
     /**
+     * get An array of video Track objects in the sequence.
+     */
+    get markers(): MarkerCollection {
+        let markers_premiere_id: string = eval_on_this_object(this._premiere_id, 'markers');
+        if (!this._markersCollectionObject) {
+            this._markersCollectionObject = new MarkerCollection(markers_premiere_id);
+        }
+        return this._markersCollectionObject;
+    }
+
+    /**
+     * set An array of video Track objects in the sequence.
+     * @param markers
+     */
+    set markers(markers: MarkerCollection) {
+        throw new Error("ERROR: Attribute 'markers' is read-only");
+    }
+
+    /**
+     * get The ProjectItem object associated with the sequence.
+     */
+    get projectItem(): ProjectItem {
+        let p_item_premiere_id: string = eval_on_this_object(this._premiere_id, 'projectItem');
+        if (!this._projectItemCollectionObject) {
+            this._projectItemCollectionObject = new ProjectItem(p_item_premiere_id);
+        }
+        return this._projectItemCollectionObject;
+    }
+
+    /**
+     * set The ProjectItem object associated with the sequence.
+     * @param projectItem
+     */
+    set projectItem(projectItem: ProjectItem) {
+        throw new Error("ERROR: Attribute 'projectItem' is read-only");
+    }
+
+    /**
      * 销毁对象
      */
     public dispose(): void {
@@ -226,6 +272,14 @@ export class Sequence {
 
         if (this._videoTrackCollectionObject) {
             this._videoTrackCollectionObject.dispose();
+        }
+
+        if (this._markersCollectionObject) {
+            this._markersCollectionObject.dispose();
+        }
+
+        if (this._projectItemCollectionObject) {
+            this._projectItemCollectionObject.dispose();
         }
     }
 }

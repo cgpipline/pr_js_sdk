@@ -82,6 +82,14 @@ try {
         let v_track_item = video_tracks[i];
     }
 
+    // 获取 markers 对象
+    let markers = sequences[0].markers;
+    console.log(markers.numMarkers);
+
+    // 获取 projectItem 对象
+    let projectItem = sequences[0].projectItem;
+    console.log(projectItem);
+
 } finally {
     app.dispose();
 }

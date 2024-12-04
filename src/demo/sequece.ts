@@ -90,6 +90,12 @@ try {
     let projectItem = sequences[0].projectItem;
     console.log(projectItem);
 
+    // sequence function 方法
+
+    // clone
+    let clone_res = sequences[0].clone();
+    console.log(clone_res);
+
 } finally {
     app.dispose();
 }

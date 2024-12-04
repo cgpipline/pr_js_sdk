@@ -258,6 +258,15 @@ export class Sequence {
         throw new Error("ERROR: Attribute 'projectItem' is read-only");
     }
 
+
+    /**
+     * Clones a sequence.
+     * Use `pymiere.wrappers.clone_sequence` to clone a sequence and get the new sequence easily
+     */
+    public clone(): string {
+        return eval_on_this_object(this._premiere_id, "clone()")
+    }
+
     /**
      * 销毁对象
      */
